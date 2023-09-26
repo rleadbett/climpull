@@ -4,9 +4,8 @@ library(terra)
 library(dplyr)
 library(stringr)
 
-source("./read-functions/read_ERDAP.R", chdir = TRUE)
+source("./read-functions/read_ERDDAP.R", chdir = TRUE)
 source("./read-functions/raster_toolbox.R", chdir = TRUE)
-
 
 servers() %>% View()
 
@@ -21,13 +20,12 @@ ed_search_adv(
 ) %>% View()
 
 ed_search_adv(
-    query = 'current',
+    query = 'salinity',
     minLat = -25,
     maxLat = -15,
     minLon = 115,
     maxLon = 125,
-    protocol = "griddap",
-    url = "https://www.ncei.noaa.gov/erddap/"
+    url = "https://polarwatch.noaa.gov/erddap/"
 ) %>% View()
 
 ed_search_adv(
@@ -52,7 +50,7 @@ ed_search_adv(
 
 
 ed_search_adv(
-    query = 'sss',
+    query = 'salinity',
     minLat = -25,
     maxLat = -15,
     minLon = 115,
@@ -61,6 +59,15 @@ ed_search_adv(
     url = "https://coastwatch.pfeg.noaa.gov/erddap/"
 ) %>% View()
 
+ed_search_adv(
+    query = 'salinity',
+    minLat = -25,
+    maxLat = -15,
+    minLon = 115,
+    maxLon = 125,
+    protocol = "griddap",
+    url = "https://www.ncei.noaa.gov/erddap/"
+) %>% View()
 
 test_chl_a <- getNCDF(
     ds_ids = c(
