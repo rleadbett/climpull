@@ -8,9 +8,9 @@ bathy_rast <- rast(
 # Crop to North-West Shelf to save compute.
 nws_extent <- ext(c(
   xmin = 110,
-  xmax = 135,
+  xmax = 132,
   ymin = -25,
-  ymax = -10
+  ymax = -9
 ))
 
 bathy_rast <- crop(bathy_rast, nws_extent)
@@ -27,7 +27,7 @@ slope_rast <- focal(
 )
 
 aus_shape <- vect("./data/shape-files/land/STE11aAust.shp")
-crs(aus_shape) <- "+proj=utm +zone=48 +datum=WGS84"
+crs(aus_shape) <- "+proj=longlat +datum=WGS84 +no_defs"
 nws_shape <- crop(
   aus_shape,
   nws_extent
